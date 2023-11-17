@@ -24,52 +24,59 @@ Another aspect is that the data set should be formatted in such a way that more 
 
 
 ## ALGORITHM:
+
 1.Importing the libraries
+
 2.Importing the dataset
+
 3.Taking care of missing data
+
 4.Encoding categorical data
+
 5.Normalizing the data
+
 6.Splitting the data into test and train
 
 ## PROGRAM:
-import pandas as pd
-import io
-from sklearn.preprocessing import StandardScaler
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.model_selection import train_test_split
-#read the dataset
-df=pd.read_csv('Churn_Modelling data.csv')
-df
-#drop unwanted columns
-df.drop('RowNumber',axis=1,inplace=True)
-df.drop('CustomerId',axis=1,inplace=True)
-df.drop('Surname',axis=1,inplace=True)
-df.drop('Geography',axis=1,inplace=True)
-df.drop('Age',axis=1,inplace=True)
-df.drop('Gender',axis=1,inplace=True)
-df
-#checking for null, duplicates, outliers in lasrt column
-df.isnull().sum()
+     import pandas as pd
+     import io
+     from sklearn.preprocessing import StandardScaler
+     from sklearn.preprocessing import MinMaxScaler
+     from sklearn.model_selection import train_test_split
+     #read the dataset
+     df=pd.read_csv('Churn_Modelling data.csv')
+     df
+     #drop unwanted columns
+     df.drop('RowNumber',axis=1,inplace=True)
+     df.drop('CustomerId',axis=1,inplace=True)
+     df.drop('Surname',axis=1,inplace=True)
+     df.drop('Geography',axis=1,inplace=True)
+     df.drop('Age',axis=1,inplace=True)
+     df.drop('Gender',axis=1,inplace=True)
+     df
+    #checking for null, duplicates, outliers in lasrt column
+    df.isnull().sum()
 
-df.duplicated()
+    df.duplicated()
 
-df['Exited'].describe()
-#normalising data to normal distribution
-sc=MinMaxScaler()
-df2=pd.DataFrame(sc.fit_transform(df),columns=['CreditScore','Tenure','Balance',
-'NumOfProducts','HasCrCard','IsActiveMember','EstimatedSalary','Exited'])
-df2
-#split dataset
-x=df2.iloc[:,:-1].values #all rows from all except last column
-x
-y=df2.iloc[:,-1].values #all rows from only last column
-y
-##creating training and test data
-X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
-print(X_train)
-print("Size of X_train: ",len(X_train))
-print(X_test)
-print("Size of X_test: ",len(X_test))
+    df['Exited'].describe()
+    #normalising data to normal distribution
+    sc=MinMaxScaler()
+    df2=pd.DataFrame(sc.fit_transform(df),columns=['CreditScore','Tenure','Balance',
+    'NumOfProducts','HasCrCard','IsActiveMember','EstimatedSalary','Exited'])
+     df2
+     #split dataset
+     x=df2.iloc[:,:-1].values #all rows from all except last column
+     x
+     y=df2.iloc[:,-1].values #all rows from only last column
+     y
+     ##creating training and test data
+     X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
+     print(X_train)
+     print("Size of X_train: ",len(X_train))
+     print(X_test)
+     print("Size of X_test: ",len(X_test))
+     
 ## OUTPUT:
 
 DATASETS AND ITS PROPERTIES:
